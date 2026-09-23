@@ -187,7 +187,7 @@ def build(article_path, out_path, doi_override=None):
         "bullet": ParagraphStyle(
             "bullet", fontName=body, fontSize=10.5, leading=15.5,
             leftIndent=14, bulletIndent=2, textColor=INK, spaceAfter=2,
-            alignment=TA_JUSTIFY,
+            alignment=TA_JUSTIFY, bulletFontName=body,
         ),
         "numbered": ParagraphStyle(
             "numbered", fontName=body, fontSize=9.5, leading=13.5,
@@ -272,7 +272,8 @@ def build(article_path, out_path, doi_override=None):
                     story.append(Paragraph(escape(str(item)), st["numbered"], bulletText=f"{i}."))
             elif shape == "list" and isinstance(value, list):
                 for item in value:
-                    story.append(Paragraph(f"&bull; {escape(str(item))}", st["bullet"]))
+                    # hanging bullet: wrapped lines align with the text, not the bullet
+                    story.append(Paragraph(escape(str(item)), st["bullet"], bulletText="\u2022"))
             elif shape == "table":
                 ok = isinstance(value, list) and all(isinstance(r, dict) for r in value)
                 if not ok:
