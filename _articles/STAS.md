@@ -85,12 +85,9 @@ perspective: >-
   relative impact of STAS, LVI, and VPI on lung cancer staging.
 
 bottom_line: >-
-  Analysis of 4061 pathologic stage I R0 NSCLC cases from the IASLC ninth
-  edition database confirms that STAS is an independent predictor of poor
-  prognosis for both recurrence-free and overall survival across all histologic
-  types and resection extents, supporting the recommendation to add STAS as a
-  histologic T descriptor in the Ninth Edition TNM Classification of Lung
-  Cancer.
+  In 4061 stage I R0 NSCLC cases, STAS independently predicted worse
+  recurrence-free and overall survival across all histologic types and
+  resection extents, supporting its addition as a histologic T descriptor.
 
 conflicts_declared: false
 last_reviewed: 2026-09-23
