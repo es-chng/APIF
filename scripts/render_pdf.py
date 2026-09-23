@@ -103,23 +103,55 @@ def load_schema(name):
     return yaml.safe_load((ROOT / "_data" / f"{name}.yml").read_text())
 
 
-NARROW_COLUMNS = {"type"}
 TABLE_AVAILABLE_WIDTH = 21.0 * cm - 2 * 2.4 * cm - 12  # A4 minus 2.4 cm margins, minus the frame's 6 pt padding each side
+CELL_PADDING = 12  # ReportLab's default 6 pt left + 6 pt right cell padding
 
 
-def compute_col_widths(cols, available=TABLE_AVAILABLE_WIDTH, narrow=NARROW_COLUMNS, narrow_w=2.3 * cm):
+def compute_col_widths(cols, rows=None, font="Helvetica", size=9, available=TABLE_AVAILABLE_WIDTH):
     """
-    Column widths for a table field, computed from however many columns the schema
-    declares -- never hardcoded for a fixed count. A schema can declare any number
-    of table columns; a short one (like "type") stays narrow, and the rest share
-    the remaining width evenly. Fixed widths sized for exactly two columns
-    previously caused a third column to silently overflow the page edge instead
-    of wrapping.
+    Column widths sized by content, the way a web browser lays out a table:
+
+      - each column's minimum is its longest single word (it can never be
+        narrower without breaking a word);
+      - each column's preferred width is its longest cell written on one line;
+      - if everything fits, columns get their preferred widths, scaled to fill
+        the line; otherwise every column gets its minimum and the remaining
+        space is shared by how much more each column wants (square-root
+        weighted, so long columns get more room without starving short ones).
+
+    So a short "Source" column stays compact and a long "Finding" column gets
+    most of the room, whatever columns a schema declares.
     """
-    n_narrow = sum(1 for c in cols if c in narrow)
-    n_wide = len(cols) - n_narrow
-    wide_w = (available - n_narrow * narrow_w) / max(n_wide, 1)
-    return [narrow_w if c in narrow else wide_w for c in cols]
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    if not cols:
+        return []
+    rows = rows or []
+
+    def cells(c):
+        return [c.capitalize()] + [str(r.get(c, "")) for r in rows]
+
+    mins, prefs = [], []
+    for c in cols:
+        texts = cells(c)
+        longest_word = max((stringWidth(w, font, size) for t in texts for w in t.split()), default=0)
+        longest_cell = max((stringWidth(t, font, size) for t in texts), default=0)
+        mins.append(longest_word + CELL_PADDING)
+        prefs.append(max(longest_cell, longest_word) + CELL_PADDING)
+
+    if sum(prefs) <= available:
+        scale = available / sum(prefs)
+        return [p * scale for p in prefs]
+    if sum(mins) >= available:
+        scale = available / sum(mins)  # extreme case: very long words everywhere
+        return [m * scale for m in mins]
+    # Share the spare room by the square root of each column's extra need, so a
+    # very long column gets the most room without squeezing a moderate one
+    # (such as a citation column) into a sliver.
+    spare = available - sum(mins)
+    wants = [max(p - m, 0) ** 0.5 for p, m in zip(prefs, mins)]
+    total_want = sum(wants) or 1
+    return [m + spare * w / total_want for m, w in zip(mins, wants)]
 
 
 def is_placeholder_doi(doi) -> bool:
@@ -289,7 +321,7 @@ def build(article_path, out_path, doi_override=None):
                     data = [[Paragraph(c.capitalize(), head_style) for c in cols]] + [
                         [Paragraph(escape(str(r.get(c, ""))), cell_style) for c in cols] for r in value
                     ]
-                    t = Table(data, hAlign="LEFT", colWidths=compute_col_widths(cols))
+                    t = Table(data, hAlign="LEFT", colWidths=compute_col_widths(cols, value, font=body, size=9))
                     t.setStyle(TableStyle([
                         ("LINEBELOW", (0, 0), (-1, 0), 0.75, "#8a877d"),
                         ("LINEBELOW", (0, 1), (-1, -1), 0.4, "#c9c5bc"),
