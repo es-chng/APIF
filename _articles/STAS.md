@@ -4,8 +4,8 @@ title: "Spread Through Air Spaces Should Be Added as a Histologic Descriptor in 
 authors:
   - given: "Ewe Seng"
     family: "Ch'ng"
-    affiliation: "Department of Pathology, School of Medical Sciences, Universiti Sains Malaysia, Kelantan, Malaysia"
-corresponding_email: "eweseng@usm.my"
+    affiliation: "Universiti Sains Malaysia, Kelantan, Malaysia"
+corresponding_email: "chngeweseng@hotmail.com"
 volume: 1
 issue: 1
 order: 1
