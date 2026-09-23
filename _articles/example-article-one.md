@@ -17,7 +17,7 @@ licence: "CC BY 4.0"
 
 # ---- Article type (file in _data/) and whether it is live ----
 schema: schema-brief
-status: published               # draft = hidden from issues and the homepage
+status: draft               # draft = hidden from issues and the homepage
 
 # ---- Schema fields: the sections defined in _data/schema-brief.yml ----
 article_type: "Example brief"
