@@ -69,7 +69,6 @@ corresponding_email: "jane@example.org"
 volume: 1
 issue: 1
 order: 1
-pages: "1-2"
 published_date: 2026-09-01
 licence: "CC BY 4.0"
 
@@ -83,7 +82,10 @@ bottom_line: >-
 ---
 ```
 
-The file name becomes the web address (`/articles/FILE-NAME/`). Affiliations
+The file name becomes the web address (`/articles/FILE-NAME/`). Articles are
+identified by number within their issue (Volume 1, Issue 1 · Article 3); the
+length of each PDF ("4 pages") is counted by the build and shown on the page,
+in the issue contents and in the PDF footer, so there is no page field to fill in. Affiliations
 and the correspondence email appear under the title; affiliations are
 numbered automatically when authors have different ones. The DOI is added by
 the Zenodo workflow; write a `doi:` line only for a DOI obtained elsewhere.
@@ -105,8 +107,9 @@ edit an article or schema ──► commit to main
         "Validate, build and publish" (automatic)
           1. check every article against its schema
           2. lock the schema of any newly published article
-          3. build the site and any new or changed PDFs
-          4. publish to GitHub Pages
+          3. build any new or changed PDFs and count their pages
+          4. build the site
+          5. publish to GitHub Pages
                                    │
         "Deposit article PDFs to Zenodo" (optional, started by hand)
           sandbox-test ─► test DOIs, labelled "not permanent"

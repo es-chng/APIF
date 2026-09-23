@@ -10,14 +10,13 @@ corresponding_email: "jane@example.org"
 volume: 1
 issue: 1
 order: 2
-pages: "3-4"
 published_date: 2026-09-02
 licence: "CC BY 4.0"
 # doi: is added automatically by the Zenodo workflow; no need to write it
 
 # ---- Article type (file in _data/) and whether it is live ----
 schema: schema-brief
-status: draft               # draft = hidden from issues and the homepage
+status: published               # draft = hidden from issues and the homepage
 
 # ---- Schema fields: the sections defined in _data/schema-brief.yml ----
 article_type: "Example brief"

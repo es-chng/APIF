@@ -52,11 +52,6 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build the site
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
-
       - name: Restore the PDF cache from the previous run
         uses: actions/cache@v4
         with:
@@ -67,10 +62,18 @@ jobs:
           restore-keys: |
             site-pdf-cache-v2-
 
-      - name: Build a PDF for every new or changed article
+      - name: Build a PDF for every new or changed article (and count its pages)
+        run: python scripts/render_changed_pdfs.py .pdf-cache .pdf-out
+
+      - name: Build the site (reads the page counts written above)
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Add the PDFs to the site
         run: |
           mkdir -p _site/files
-          python scripts/render_changed_pdfs.py .pdf-cache _site/files
+          cp .pdf-out/*.pdf _site/files/
 
       - uses: actions/upload-pages-artifact@v3
 

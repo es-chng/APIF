@@ -25,7 +25,7 @@ import shutil
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from render_pdf import build, is_placeholder_doi  # noqa: E402
+from render_pdf import build, count_pdf_pages, is_placeholder_doi  # noqa: E402
 import yaml  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -54,6 +54,9 @@ def find_articles(root):
 
 def file_hash(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+PAGES_DATA = ROOT / "_data" / "pdf-pages.yml"
 
 
 def ledger_doi(article_path):
@@ -101,6 +104,7 @@ def main():
     current_names = {p.name for p in current_articles}
 
     built, reused, failed = [], [], []
+    page_counts = {}
 
     for path in current_articles:
         h = combined_hash(path)
@@ -121,6 +125,7 @@ def main():
                 continue
 
         shutil.copy(cached_pdf, out_dir / pdf_name)
+        page_counts[path.stem] = count_pdf_pages(cached_pdf)
 
     # Forget articles that no longer exist, so the cache does not grow forever
     # and a deleted article's stale PDF is never left lying around.
@@ -131,6 +136,13 @@ def main():
         stale_pdf.unlink(missing_ok=True)
 
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True))
+
+    # Page counts for the website ("4 pages"), read by the article and issue
+    # pages. Written before Jekyll builds the site; not committed.
+    PAGES_DATA.write_text(
+        "# Written by scripts/render_changed_pdfs.py on every build. Do not edit.\n"
+        + yaml.safe_dump(page_counts, sort_keys=True)
+    )
 
     print(f"Built {len(built)}, reused {len(reused)}, removed {len(removed)}, failed {len(failed)} "
           f"(of {len(current_articles)} article(s) total).")

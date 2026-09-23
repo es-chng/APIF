@@ -7,3 +7,5 @@ vendor/
 __pycache__/
 *.pyc
 .pdf-cache/
+_data/pdf-pages.yml
+.pdf-out/

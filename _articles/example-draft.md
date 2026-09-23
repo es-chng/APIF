@@ -10,7 +10,6 @@ corresponding_email: "jane@example.org"
 volume: 1
 issue: 1
 order: 3
-pages: "5-6"
 published_date: 2026-09-01
 licence: "CC BY 4.0"
 # doi: is added automatically by the Zenodo workflow; no need to write it

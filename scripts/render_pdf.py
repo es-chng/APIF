@@ -162,9 +162,10 @@ def is_placeholder_doi(doi) -> bool:
     return any(d.startswith(x) for x in ("10.5281/zenodo.000", "10.5281/zenodo.xxx", "doi:pending", "pending"))
 
 
-def build(article_path, out_path, doi_override=None):
+def _render(article_path, out_path, doi_override=None, page_count=None):
     """
-    Build one article PDF.
+    Render one article PDF once and return its number of pages.
+    page_count: the number printed in the footer ("4 pages"); see build().
     doi_override: if set, used in the footer instead of article['doi'].
                   Used by the Zenodo deposit flow so the final PDF embeds
                   the real reserved DOI before upload.
@@ -343,30 +344,68 @@ def build(article_path, out_path, doi_override=None):
             story.append(Spacer(1, 3))
 
     # ---- fixed footer, identical structure to the webpage's base frame ----
+    pages_label = pages_text(page_count)
     story.append(Spacer(1, 10))
     story.append(HRFlowable(width="100%", thickness=0.6, color=RULE, spaceBefore=8, spaceAfter=8))
     if display_doi and str(display_doi).startswith("10.5072/"):
         # sandbox.zenodo.org test DOI: shown so the pipeline can be tested,
         # clearly labelled because it is not permanent and does not resolve.
         story.append(Paragraph(
-            f"Pages {article['pages']} &middot; {escape(str(display_doi))} "
+            f"{pages_label} &middot; {escape(str(display_doi))} "
             f"(test DOI from sandbox.zenodo.org, not permanent)",
             st["footer"]))
     elif display_doi:
         story.append(Paragraph(
-            f"Pages {article['pages']} &middot; https://doi.org/{escape(str(display_doi))}",
+            f"{pages_label} &middot; https://doi.org/{escape(str(display_doi))}",
             st["footer"]))
     else:
-        story.append(Paragraph(f"Pages {article['pages']}", st["footer"]))
+        story.append(Paragraph(pages_label, st["footer"]))
     story.append(Paragraph(f"Licence: {escape(article['licence'])}", st["footer"]))
 
     doc = SimpleDocTemplate(out_path, pagesize=A4, leftMargin=2.4 * cm, rightMargin=2.4 * cm,
                             topMargin=2.2 * cm, bottomMargin=2.2 * cm, title=article["title"])
     doc.build(story)
+    return doc.page
+
+
+def pages_text(n) -> str:
+    if not n:
+        return ""
+    return "1 page" if n == 1 else f"{n} pages"
+
+
+def build(article_path, out_path, doi_override=None):
+    """
+    Build one article PDF and return its page count.
+
+    The footer states the PDF's own length ("4 pages"), counted by rendering:
+    a trial render finds the length, the real render prints it. If printing
+    the count ever changes the length (a footer tipping onto a new page), it
+    renders once more with the corrected count.
+
+    doi_override: if set, used in the footer instead of article['doi'].
+                  Used by the Zenodo deposit flow so the final PDF embeds
+                  the real reserved DOI before upload.
+    """
+    import io
+    n = _render(article_path, io.BytesIO(), doi_override, page_count=99)
+    for _ in range(3):
+        m = _render(article_path, out_path, doi_override, page_count=n)
+        if m == n:
+            return n
+        n = m
+    return n
+
+
+def count_pdf_pages(pdf_path) -> int:
+    """Number of pages in an existing PDF (used for PDFs reused from the cache)."""
+    import re
+    data = pathlib.Path(pdf_path).read_bytes()
+    return len(re.findall(rb"/Type\s*/Page(?![a-z])", data))
 
 
 if __name__ == "__main__":
     # Optional third arg: DOI override for embedding a reserved Zenodo DOI
     override = sys.argv[3] if len(sys.argv) > 3 else None
-    build(sys.argv[1], sys.argv[2], doi_override=override)
-    print(f"wrote {sys.argv[2]}" + (f" (doi={override})" if override else ""))
+    n = build(sys.argv[1], sys.argv[2], doi_override=override)
+    print(f"wrote {sys.argv[2]} ({pages_text(n)})" + (f" (doi={override})" if override else ""))
