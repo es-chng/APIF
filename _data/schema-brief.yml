@@ -65,6 +65,11 @@ fields:
     teaser: true
     max_chars: 300
 
+  - key: references
+    label: "References"
+    shape: list
+    style: numbered
+
   - key: conflicts_declared
     label: "Conflicts of interest declared"
     shape: boolean
