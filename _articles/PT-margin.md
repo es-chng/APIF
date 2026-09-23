@@ -10,7 +10,7 @@ volume: 1
 issue: 1
 order: 2
 pages: "1-3"
-published_date: 2026-09-23
+published_date: 2026-09-24
 licence: "CC BY 4.0"
 # doi: is added automatically by the Zenodo workflow; no need to write it
 
