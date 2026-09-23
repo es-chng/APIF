@@ -16,7 +16,7 @@ licence: "CC BY 4.0"
 
 # ---- Article type (file in _data/) and whether it is live ----
 schema: schema-brief
-status: draft
+status: published
 
 # ---- Schema fields: the sections defined in _data/schema-brief.yml ----
 article_type: "Evidence brief"
