@@ -54,6 +54,8 @@ bottom_line: >-
   One or two sentences that answer the question. This field is the teaser:
   it also appears under the title on the homepage and in the issue contents.
 
+references: 
+
 conflicts_declared: false
 last_reviewed: 2026-08-15
 
