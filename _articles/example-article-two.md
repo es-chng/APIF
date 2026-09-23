@@ -54,6 +54,8 @@ bottom_line: >-
   A second example article. Its teaser differs from the first so the
   homepage listing shows how each article is summarised.
 
+references:
+
 conflicts_declared: false
 last_reviewed: 2026-08-15
 
