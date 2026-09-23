@@ -32,6 +32,26 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 MANIFEST_NAME = "manifest.json"
 
 
+
+# Same rule as Jekyll: every Markdown file anywhere under _articles/, in any
+# letter case (.md, .MD, .markdown, ...). Anything else there is reported, so a
+# misnamed article is never silently skipped.
+MARKDOWN_EXTS = {".md", ".markdown", ".mkdown", ".mkdn", ".mkd"}
+
+
+def find_articles(root):
+    folder = root / "_articles"
+    found, ignored = [], []
+    for p in sorted(folder.rglob("*")):
+        if not p.is_file() or p.name.startswith("."):
+            continue
+        (found if p.suffix.lower() in MARKDOWN_EXTS else ignored).append(p)
+    for p in ignored:
+        print(f"WARNING  {p.relative_to(root)} is in _articles/ but is not a Markdown (.md) "
+              f"file, so it is not treated as an article")
+    return found
+
+
 def file_hash(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -48,8 +68,11 @@ def ledger_doi(article_path):
 
 def combined_hash(article_path):
     """The article's own bytes, plus its schema's bytes if it declares one,
-    plus its ledger DOI -- so the PDF is rebuilt once a real DOI is minted."""
+    plus its ledger DOI -- so the PDF is rebuilt once a real DOI is minted --
+    plus the PDF renderer's own code, so every PDF is rebuilt when the layout
+    (e.g. justification, spacing) in render_pdf.py changes."""
     h = hashlib.sha256()
+    h.update((ROOT / "scripts" / "render_pdf.py").read_bytes())
     h.update(str(ledger_doi(article_path) or "").encode())
     h.update(article_path.read_bytes())
     text = article_path.read_text(encoding="utf-8")
@@ -74,7 +97,7 @@ def main():
     manifest_path = cache_dir / MANIFEST_NAME
     manifest = json.loads(manifest_path.read_text()) if manifest_path.is_file() else {}
 
-    current_articles = sorted((ROOT / "_articles").glob("*.md"))
+    current_articles = find_articles(ROOT)
     current_names = {p.name for p in current_articles}
 
     built, reused, failed = [], [], []

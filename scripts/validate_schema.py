@@ -55,6 +55,26 @@ PLACEHOLDER_DOI_PREFIXES = (
 )
 
 
+
+# Same rule as Jekyll: every Markdown file anywhere under _articles/, in any
+# letter case (.md, .MD, .markdown, ...). Anything else there is reported, so a
+# misnamed article is never silently skipped.
+MARKDOWN_EXTS = {".md", ".markdown", ".mkdown", ".mkdn", ".mkd"}
+
+
+def find_articles(root):
+    folder = root / "_articles"
+    found, ignored = [], []
+    for p in sorted(folder.rglob("*")):
+        if not p.is_file() or p.name.startswith("."):
+            continue
+        (found if p.suffix.lower() in MARKDOWN_EXTS else ignored).append(p)
+    for p in ignored:
+        print(f"WARNING  {p.relative_to(root)} is in _articles/ but is not a Markdown (.md) "
+              f"file, so it is not treated as an article")
+    return found
+
+
 def load_front_matter(path: pathlib.Path) -> dict:
     text = path.read_text(encoding="utf-8")
     m = FM_RE.match(text)
@@ -304,7 +324,7 @@ def main() -> int:
 
     ledger = load_ledger()
     locks = load_locks()
-    articles = sorted((ROOT / "_articles").glob("*.md"))
+    articles = find_articles(ROOT)
 
     total_errors = 0
 

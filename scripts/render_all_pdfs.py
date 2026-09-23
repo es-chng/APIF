@@ -15,13 +15,33 @@ from render_pdf import build  # noqa: E402
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
+
+# Same rule as Jekyll: every Markdown file anywhere under _articles/, in any
+# letter case (.md, .MD, .markdown, ...). Anything else there is reported, so a
+# misnamed article is never silently skipped.
+MARKDOWN_EXTS = {".md", ".markdown", ".mkdown", ".mkdn", ".mkd"}
+
+
+def find_articles(root):
+    folder = root / "_articles"
+    found, ignored = [], []
+    for p in sorted(folder.rglob("*")):
+        if not p.is_file() or p.name.startswith("."):
+            continue
+        (found if p.suffix.lower() in MARKDOWN_EXTS else ignored).append(p)
+    for p in ignored:
+        print(f"WARNING  {p.relative_to(root)} is in _articles/ but is not a Markdown (.md) "
+              f"file, so it is not treated as an article")
+    return found
+
+
 def main():
     if len(sys.argv) != 2:
         sys.exit("Usage: python scripts/render_all_pdfs.py OUTPUT_DIR")
     out_dir = pathlib.Path(sys.argv[1])
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    articles = sorted((ROOT / "_articles").glob("*.md"))
+    articles = find_articles(ROOT)
     failures = []
     for path in articles:
         out_path = out_dir / f"{path.stem}.pdf"

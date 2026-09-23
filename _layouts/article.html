@@ -54,7 +54,7 @@ layout: null
   {% include schema-slot.html schema=schema article=page %}
 
   <footer class="base-footer">
-    {%- assign pdf_slug = page.name | remove: ".md" -%}
+    {%- assign pdf_slug = page.name | remove: page.ext -%}
     {%- comment -%}
       Prefer a real DOI from the Zenodo ledger (written by scripts/zenodo_articles.py)
       over a placeholder in the article front matter. Front-matter remains the
