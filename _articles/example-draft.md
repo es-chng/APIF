@@ -54,10 +54,12 @@ bottom_line: >-
   This article is a draft, so it appears in no issue and not on the
   homepage. Set status to published to include it.
 
-references:
-
 conflicts_declared: false
 last_reviewed: 2026-08-15
+
+references:
+  - "Author A, Author B. Title of the first example source. Journal Name. 2025;12(3):45-52. doi:10.0000/example.1"
+  - "Author C. Title of the second example source. Journal Name. 2024;8:101-110."
 
 editorial_note: "Editor-only field: never shown on the site or in the PDF."
 ---

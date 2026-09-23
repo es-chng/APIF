@@ -11,6 +11,7 @@
 #
 # Add only when needed:
 #   style       boxed | opinion | badge    (default: plain; tables: table)
+#               numbered                   (list fields only: 1. 2. 3.)
 #   visibility  editor                     (default: public; editor = never shown)
 #   optional    true                       (default: required)
 #   teaser      true                       (exactly one field: shown in listings)
@@ -65,12 +66,6 @@ fields:
     teaser: true
     max_chars: 300
 
-  - key: references
-    label: "References"
-    shape: list
-    style: numbered
-    optional: true
-
   - key: conflicts_declared
     label: "Conflicts of interest declared"
     shape: boolean
@@ -78,6 +73,11 @@ fields:
   - key: last_reviewed
     label: "Evidence reviewed on"
     shape: date
+
+  - key: references
+    label: "References"
+    shape: list
+    style: numbered
 
   - key: editorial_note
     label: "Editorial note"

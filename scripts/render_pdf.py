@@ -188,6 +188,11 @@ def build(article_path, out_path, doi_override=None):
             "bullet", fontName=body, fontSize=10.5, leading=15.5,
             leftIndent=14, bulletIndent=2, textColor=INK, spaceAfter=2,
         ),
+        "numbered": ParagraphStyle(
+            "numbered", fontName=body, fontSize=9.5, leading=13.5,
+            leftIndent=18, bulletIndent=0, textColor=INK, spaceAfter=3,
+            bulletFontName=body, bulletFontSize=9.5,
+        ),
         "footer": ParagraphStyle(
             "footer", fontName=body, fontSize=8.5, leading=11,
             textColor=MUTED, spaceBefore=4, spaceAfter=1,
@@ -260,6 +265,9 @@ def build(article_path, out_path, doi_override=None):
                     story.append(HRFlowable(width="100%", thickness=0.5, color="#c9c5bc", spaceBefore=4))
                 else:
                     story.append(Paragraph(escape(str(value)), text_style))
+            elif shape == "list" and isinstance(value, list) and style_name == "numbered":
+                for i, item in enumerate(value, 1):
+                    story.append(Paragraph(escape(str(item)), st["numbered"], bulletText=f"{i}."))
             elif shape == "list" and isinstance(value, list):
                 for item in value:
                     story.append(Paragraph(f"&bull; {escape(str(item))}", st["bullet"]))

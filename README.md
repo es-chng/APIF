@@ -47,7 +47,8 @@ fields:
     max_chars: 300
 ```
 
-Other options: `optional: true` for a section that may be left out,
+Other options: `style: numbered` for a numbered list such as references,
+`optional: true` for a section that may be left out,
 `visibility: editor` for a private note that is never shown, and `columns`
 for tables. The page and PDF templates read the schema rather than any section
 name, so a new article type needs only a new schema file.

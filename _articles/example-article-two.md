@@ -17,7 +17,7 @@ licence: "CC BY 4.0"
 
 # ---- Article type (file in _data/) and whether it is live ----
 schema: schema-brief
-status: draft               # draft = hidden from issues and the homepage
+status: published               # draft = hidden from issues and the homepage
 
 # ---- Schema fields: the sections defined in _data/schema-brief.yml ----
 article_type: "Example brief"
@@ -54,9 +54,11 @@ bottom_line: >-
   A second example article. Its teaser differs from the first so the
   homepage listing shows how each article is summarised.
 
-references:
-
 conflicts_declared: false
 last_reviewed: 2026-08-15
+
+references:
+  - "Author A, Author B. Title of the first example source. Journal Name. 2025;12(3):45-52. doi:10.0000/example.1"
+  - "Author C. Title of the second example source. Journal Name. 2024;8:101-110."
 
 ---

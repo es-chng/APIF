@@ -623,3 +623,16 @@ main,
     padding-top: 0;
   }
 }
+
+/* numbered list style (e.g. references): smaller, left-aligned, long DOIs wrap */
+ol.field-list-numbered {
+  padding-left: 1.6rem;
+  font-size: max(var(--min-text), calc(0.94rem * var(--text-scale)));
+}
+ol.field-list-numbered li {
+  text-align: left;
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: anywhere;
+  padding-left: 0.2rem;
+}

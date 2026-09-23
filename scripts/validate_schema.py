@@ -94,7 +94,7 @@ def is_published(fm: dict, slug: str, ledger: dict) -> bool:
 
 
 VALID_SHAPES = {"text", "list", "table", "boolean", "date"}
-VALID_STYLES = {"plain", "boxed", "opinion", "badge", "table"}
+VALID_STYLES = {"plain", "boxed", "opinion", "badge", "table", "numbered"}
 
 
 def check_schema_file(schema: dict, name: str = "?") -> list[str]:
