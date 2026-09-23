@@ -4,6 +4,7 @@ schema-brief:
   content_hash: a5df3c521dadc72799265c44aa3c59728e4020aba9fcaa747a0c70a9b51f324c
   locked_at: '2026-09-23T08:50:14Z'
   locked_by:
+  - STAS.md
   - example-article-one.md
   - example-article-two.md
   version: 1
