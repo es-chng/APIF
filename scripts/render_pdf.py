@@ -104,7 +104,7 @@ def load_schema(name):
 
 
 NARROW_COLUMNS = {"type"}
-TABLE_AVAILABLE_WIDTH = 16.6 * cm  # A4 width minus the document's left/right margins
+TABLE_AVAILABLE_WIDTH = 21.0 * cm - 2 * 2.4 * cm - 12  # A4 minus 2.4 cm margins, minus the frame's 6 pt padding each side
 
 
 def compute_col_widths(cols, available=TABLE_AVAILABLE_WIDTH, narrow=NARROW_COLUMNS, narrow_w=2.3 * cm):
@@ -187,10 +187,12 @@ def build(article_path, out_path, doi_override=None):
         "bullet": ParagraphStyle(
             "bullet", fontName=body, fontSize=10.5, leading=15.5,
             leftIndent=14, bulletIndent=2, textColor=INK, spaceAfter=2,
+            alignment=TA_JUSTIFY,
         ),
         "numbered": ParagraphStyle(
             "numbered", fontName=body, fontSize=9.5, leading=13.5,
             leftIndent=18, bulletIndent=0, textColor=INK, spaceAfter=3,
+            alignment=TA_JUSTIFY,
             bulletFontName=body, bulletFontSize=9.5,
         ),
         "footer": ParagraphStyle(
@@ -279,7 +281,8 @@ def build(article_path, out_path, doi_override=None):
                         f"the expected table shape]", st["error"]))
                 else:
                     cols = field.get("columns", [])
-                    cell_style = ParagraphStyle("cell", fontName=body, fontSize=9, leading=12.5, textColor=INK)
+                    cell_style = ParagraphStyle("cell", fontName=body, fontSize=9, leading=12.5, textColor=INK,
+                                               alignment=TA_JUSTIFY)
                     head_style = ParagraphStyle("cellhead", fontName=bold, fontSize=8.5, leading=11, textColor=MUTED)
                     data = [[Paragraph(c.capitalize(), head_style) for c in cols]] + [
                         [Paragraph(escape(str(r.get(c, ""))), cell_style) for c in cols] for r in value

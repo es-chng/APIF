@@ -355,7 +355,7 @@ main,
   color: var(--ink);
   margin: 0.45rem 0 0;
   line-height: 1.55;
-  max-width: 32rem;   /* was 38rem — narrower for readability */
+  max-width: none;          /* full column width: justified text lines up with the rules */
 }
 .toc-teaser-missing {
   color: var(--muted);
@@ -470,14 +470,14 @@ main,
   letter-spacing: -0.025em;
 }
 .home-dek {
-  max-width: 34rem;          /* narrowed for reading */
+  max-width: none;          /* full column width: justified text lines up with the rules */
   margin: 0;
   font-size: max(var(--min-text), calc(1.12rem * var(--text-scale)));
   line-height: 1.55;
   color: var(--muted);
 }
 .home-principle {
-  max-width: 36rem;          /* narrowed from 43rem */
+  max-width: none;          /* full column width: justified text lines up with the rules */
   padding: 2rem 0 2.25rem;
   border-bottom: 1px solid var(--rule);
 }
@@ -488,7 +488,7 @@ main,
   font-style: italic;
 }
 .home-principle p:last-child {
-  max-width: 32rem;          /* narrowed from 39rem */
+  max-width: none;          /* full column width: justified text lines up with the rules */
   margin: 0;
   color: var(--muted);
 }
@@ -539,7 +539,7 @@ main,
   color: var(--accent);
 }
 .feature-teaser {
-  max-width: 36rem;          /* narrowed from 42rem */
+  max-width: none;          /* full column width: justified text lines up with the rules */
   margin: 0;
   font-size: max(var(--min-text), calc(1rem * var(--text-scale)));
   line-height: 1.58;
@@ -567,7 +567,7 @@ main,
   line-height: 1.35;
 }
 .article-row p:not(.article-badge) {
-  max-width: 32rem;          /* narrowed from 38rem */
+  max-width: none;          /* full column width: justified text lines up with the rules */
   margin: 0.4rem 0 0;
   color: var(--muted);
   font-size: max(var(--min-text), calc(0.94rem * var(--text-scale)));
@@ -586,7 +586,7 @@ main,
   font-style: italic;
 }
 .home-footer-note {
-  max-width: 34rem;          /* narrowed from 39rem */
+  max-width: none;          /* full column width: justified text lines up with the rules */
   margin-top: 3.25rem;
   padding-top: 1.15rem;
   border-top: 1px solid var(--rule);
@@ -624,15 +624,23 @@ main,
   }
 }
 
-/* numbered list style (e.g. references): smaller, left-aligned, long DOIs wrap */
+/* numbered list style (e.g. references): smaller, justified, long DOIs wrap */
 ol.field-list-numbered {
   padding-left: 1.6rem;
   font-size: max(var(--min-text), calc(0.94rem * var(--text-scale)));
 }
 ol.field-list-numbered li {
-  text-align: left;
-  hyphens: none;
-  -webkit-hyphens: none;
-  overflow-wrap: anywhere;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: anywhere;   /* long DOIs and URLs still wrap */
   padding-left: 0.2rem;
+}
+
+/* table cells (e.g. evidence): justified like the running text */
+.field-table td {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: anywhere;
 }
