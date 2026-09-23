@@ -89,6 +89,9 @@ bottom_line: >-
   recurrence-free and overall survival across all histologic types and
   resection extents, supporting its addition as a histologic T descriptor.
 
+references:
+  - "Travis WD, Eisele M, Nishimura KK, et al. The International Association for the Study of Lung Cancer (IASLC) Staging Project for Lung Cancer: Recommendation to Introduce Spread Through Air Spaces as a Histologic Descriptor in the Ninth Edition of the TNM Classification of Lung Cancer. Analysis of 4061 Pathologic Stage I NSCLC. J Thorac Oncol. 2024;19(7):1028-1051. doi:10.1016/j.jtho.2024.03.015"
+
 conflicts_declared: false
 last_reviewed: 2026-09-23
 
