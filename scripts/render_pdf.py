@@ -156,6 +156,7 @@ def build(article_path, out_path, doi_override=None):
         "title": ParagraphStyle(
             "title", fontName=bold, fontSize=16, leading=20, spaceAfter=8,
             spaceBefore=2, textColor=INK,
+            alignment=TA_JUSTIFY,
         ),
         "authors": ParagraphStyle(
             "authors", fontName=italic, fontSize=10.5, leading=14,
