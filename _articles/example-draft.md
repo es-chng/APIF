@@ -54,6 +54,8 @@ bottom_line: >-
   This article is a draft, so it appears in no issue and not on the
   homepage. Set status to published to include it.
 
+references:
+
 conflicts_declared: false
 last_reviewed: 2026-08-15
 
