@@ -4,7 +4,7 @@ title: "Margin Adequacy in Phyllodes Tumors Revisited: A Critical Interpretive S
 authors:
   - given: "Ewe Seng"
     family: "Ch'ng"
-    affiliation: "Department of Pathology, School of Medical Sciences, Universiti Sains Malaysia, Kelantan, Malaysia"
+    affiliation: "Universiti Sains Malaysia, Penang, Malaysia"
 corresponding_email: "eweseng@usm.my"
 volume: 1
 issue: 1
