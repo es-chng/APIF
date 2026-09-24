@@ -109,6 +109,9 @@ bottom_line: >-
   DCIS mastectomy patients as low-risk, in whom sentinel lymph node biopsy
   may be safely omitted—pending multicenter validation.
 
+references:
+  - "Riggi JAM, Galant C, Bouzin C, et al. An Immunohistochemistry-based Decision Flowchart to De-escalate Axillary Surgery for Biopsy-Diagnosed Pure Ductal Carcinoma In Situ (DCIS) of the Breast. Mod Pathol. 2026;39(9):101040. doi:10.1016/j.modpat.2026.101040"
+
 conflicts_declared: false
 last_reviewed: 2026-09-23
 
