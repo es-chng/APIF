@@ -10,13 +10,13 @@ volume: 1
 issue: 1
 order: 3
 pages: "1-3"
-published_date: 2026-09-23
+published_date: 2026-09-25
 licence: "CC BY 4.0"
 # doi: is added automatically by the Zenodo workflow; no need to write it
 
 # ---- Article type (file in _data/) and whether it is live ----
 schema: schema-brief
-status: draft
+status: published
 
 # ---- Schema fields: the sections defined in _data/schema-brief.yml ----
 article_type: "Evidence brief"
