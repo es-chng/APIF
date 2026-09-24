@@ -22,9 +22,10 @@ status: published
 article_type: "Evidence brief"
 
 question: >-
-  Can immunohistochemistry-based risk stratification identify a subgroup of
-  patients with biopsy-diagnosed pure ductal carcinoma in situ (DCIS) in whom
-  sentinel lymph node biopsy (SLNB) can be safely omitted?
+  Can histopathological features combined with ER and HER2 status identify a
+  subgroup of patients with biopsy-diagnosed pure ductal carcinoma in situ
+  (DCIS) at low risk of upstaging to invasive breast cancer (IBC), in whom
+  axillary surgery might eventually be de-escalated?
 
 background: >-
   DCIS is a nonobligate precursor of invasive breast cancer (IBC) in which
@@ -32,18 +33,19 @@ background: >-
   Treatment is remarkably similar to that of IBC despite different biology.
   Approximately 20% of patients with a preoperative biopsy diagnosis of pure
   DCIS upstage to IBC after surgery, most likely because occult synchronous IBC
-  was present but not sampled at biopsy. SLNB is performed to compensate for
-  this upstaging risk. Although ASCO/NCCN guidelines recommend SLNB only for
-  patients with DCIS treated with mastectomy, application of these
-  recommendations is variable in routine practice: 98.8% of patients with DCIS
-  who underwent axillary surgery had no lymph node metastasis and were thus
-  overtreaded, exposing them to postoperative pain, reduced shoulder mobility,
-  lymphedema, and seroma formation. De-escalation is already established for
-  early IBC, with the INSEMA, SOUND, BOOG 2013-08, and NAUTILUS trials showing
-  SLNB may be safely omitted in clinically node-negative, ER+/HER2− early
-  disease. Riggi and colleagues therefore sought to identify robust biomarkers
-  distinguishing DCIS with low versus high risk of upstaging to IBC, with the
-  goal of safely omitting SLNB.
+  was present but not sampled at biopsy. Sentinel lymph node biopsy (SLNB) is
+  performed to compensate for this upstaging risk. Although ASCO/NCCN
+  guidelines recommend SLNB only for patients with DCIS treated with
+  mastectomy, application of these recommendations is variable in routine
+  practice: 98.8% of patients with DCIS who underwent axillary surgery had no
+  lymph node metastasis and were thus overtreated, exposing them to
+  postoperative pain, reduced shoulder mobility, lymphedema, and seroma
+  formation. De-escalation is already established for early IBC, with the
+  INSEMA, SOUND, BOOG 2013-08, and NAUTILUS trials showing SLNB may be safely
+  omitted in clinically node-negative, ER+/HER2− early disease. Riggi and
+  colleagues therefore sought to identify biomarkers distinguishing DCIS with
+  low versus high risk of upstaging to IBC, with the ultimate goal of
+  informing future de-escalation of axillary surgery.
 
 evidence:
   - source: "Riggi et al. (2026); retrospective cohort of 258 DCIS lesions (252 patients)"
@@ -54,20 +56,21 @@ evidence:
     limitation: "Postoperative DCIS size is never available at the time of preoperative biopsy and was therefore not corrected for in the main multivariate model; nuclear grading in DCIS is prone to interobserver variability and was not implemented in the flowchart."
   - source: "Riggi et al. (2026); development and testing of decision models in the ER+/HER2− mastectomy arm"
     finding: "Model 1, based on radiological size >20 mm and/or solid architecture, classified 42 of 58 ER+/HER2− DCIS treated with mastectomy (72%) as high-risk, 10 (17%) as low-risk, and 6 (10%) as unclassified. In the low-risk group, 1 of 10 (10%) upstaged to pT1c, but none of the 3 SLNBs was positive. Model 2, based on solid architecture and/or absent histopathological calcifications, classified 26 of 58 (45%) as high-risk and 32 of 58 (55%) as low-risk; in the high-risk arm, 10 of 26 (39%) upstaged to IBC, and 2 of 20 SLNBs (28%) showed axillary metastases."
-    limitation: "Model 1 identified only a small subgroup (~12% of the ER+/HER2− mastectomy cohort, 4% of the total cohort) eligible for de-escalation; HER2 IHC was regarded as positive only when score 3+ because equivocal 2+ DCIS was not subjected to in situ hybridization; PR expression was not included because its clinical relevance for DCIS treatment is unclear."
+    limitation: "Model 1 identified only a small subgroup (~12% of the ER+/HER2− mastectomy cohort, 4% of the total cohort) eligible for potential de-escalation; HER2 IHC was regarded as positive only when score 3+ because equivocal 2+ DCIS was not subjected to in situ hybridization; PR expression was not included because its clinical relevance for DCIS treatment is unclear."
   - source: "Riggi et al. (2026); ER and HER2 immunohistochemistry profiling"
     finding: "Among 258 DCIS, 23% were HER2+ (score 3+), 73% were HER2−, and IHC was unavailable in 4%. Using a 10% cut-off for ER positivity, 7% were ER−/HER2−, and 67% were ER+/HER2−. Triple-negative DCIS was usually associated with triple-negative IBC, and HER2+ DCIS with HER2+ IBC, supporting the assumption that synchronous IBC frequently shares the immunohistochemical profile of the adjacent DCIS."
     limitation: "Only HER2 3+ DCIS was regarded as HER2+ because HER2 2+ lesions were not subjected to in situ hybridization; none of the 31 upstaged HER2− DCIS were associated with HER2+ IBC, but the different purpose of HER2 assessment in DCIS versus IBC must be emphasized—in DCIS, HER2 IHC is used to predict the chance of finding HER2+ IBC in the subsequent resection, not to select targeted therapy."
 
 recommendations:
-  - "SLNBs may be safely omitted for patients with biopsy-diagnosed ER+/HER2− pure DCIS treated with mastectomy who have no solid architecture and no histopathological calcifications (model 2), which identified 32 of 58 patients (55%) as low-risk, eligible for de-escalation of axillary surgery."
-  - "SLNBs are not required for DCIS treated with lumpectomy, based on the data confirming that axillary surgery adds no benefit in this group."
-  - "Routine implementation of HER2 immunohistochemistry for every biopsy-diagnosed pure DCIS seems mandatory to guide surgical decision-making, as HER2+ and triple-negative profiles identify patients at higher risk of upstaging and of harboring aggressive IBC."
-  - "SLNB should be performed for DCIS with a HER2+ or ER−/HER2− (triple-negative) profile, as these tumors are more aggressive and more frequently associated with axillary lymph node metastases."
-  - "The decision flowchart should exclude patients with a palpable mass, clinically positive nodes (cN1), and radiological suspicion of invasion; it also does not apply to patients who do not meet these criteria."
+  - "The combination of solid architecture and absent histopathological calcifications identifies a subgroup of ER+/HER2− DCIS that may warrant evaluation for axillary de-escalation, but omission of SLNB should remain investigational pending multicentre validation."
+  - "SLNBs are not required for DCIS treated with lumpectomy, based on the data confirming that axillary surgery adds no benefit in this group; this is consistent with existing ASCO/NCCN guidance."
+  - "HER2 immunohistochemistry may have a role in future risk-stratification algorithms for biopsy-diagnosed DCIS, but its routine use specifically to guide axillary surgery requires prospective validation."
+  - "HER2-positive and ER-negative/HER2-negative DCIS may represent higher-risk groups for occult invasive disease and warrant further evaluation in prospective de-escalation studies, rather than being treated as established indications for SLNB."
+  - "The decision model should exclude patients with a palpable mass, clinically positive nodes (cN1), and radiological suspicion of invasion, as these features were outside the scope of the derivation cohort."
   - "The proposed workflow requires retrospective validation in large-scale multicenter studies before moving to prospective clinical trials and routine implementation."
 
 open_questions:
+  - "Whether the low-risk subgroup identified by model 2 truly has a sufficiently low rate of upstaging and of positive SLNB to justify omitting axillary surgery, given the very limited number of SLNB observations within that subgroup."
   - "Whether SLNBs might be safely omitted in younger patients (<50 years) with low-risk DCIS, since the INSEMA trial focused only on patients aged ≥50 years and most DCIS is diagnosed in the screening age range of 50–69 years."
   - "Whether the impact of age, symptomatic presentation, and preoperative radiological DCIS size on risk stratification can be validated prospectively, and which of model 1 and model 2 performs better in clinical practice."
   - "Whether HER2 2+ (equivocal) DCIS, which was not subjected to in situ hybridization in this study, should be routinely reflex-tested to refine risk stratification."
@@ -82,14 +85,17 @@ perspective: >-
   98.8% of such procedures reveal no nodal metastasis. The authors' most
   useful contribution is the reframing of HER2 immunohistochemistry in DCIS:
   unlike its role in IBC, where it selects patients for targeted therapy, in
-  DCIS it functions as a predictive marker for the likelihood of finding
-  HER2+ IBC in the subsequent resection. This is a legitimate and practical
-  repurposing. The differential performance of the two models is instructive:
-  model 1 (radiological size and solid architecture) is more specific but
-  identifies only a small subset eligible for de-escalation, whereas model 2
-  (solid architecture and absent calcifications) is more inclusive but carries
-  a higher upstaging rate in its high-risk arm. Model 2 appears more promising
-  for future validation. Several limitations deserve emphasis: the study is
+  DCIS it is proposed as a marker of the likelihood of finding HER2+ IBC in
+  the subsequent resection. This is a legitimate and practical hypothesis, but
+  it remains a hypothesis. The differential performance of the two models is
+  instructive: model 1 (radiological size and solid architecture) is more
+  specific but identifies only a small subset potentially eligible for
+  de-escalation, whereas model 2 (solid architecture and absent calcifications)
+  is more inclusive but carries a higher upstaging rate in its high-risk arm.
+  Model 2 appears more promising for future validation, yet it identified only
+  32 of 58 patients as low-risk, and the number of SLNB observations in that
+  subgroup was very small—so the safety of omitting SLNB cannot be inferred
+  from these data. Several limitations deserve emphasis: the study is
   retrospective and single-institution; postoperative DCIS size—the only
   consistently significant predictor—is unavailable preoperatively, which
   weakens the practical applicability of the multivariate model; and nuclear
@@ -104,10 +110,9 @@ perspective: >-
   overtreatment for a common diagnosis.
 
 bottom_line: >-
-  A decision flowchart combining ER/HER2 immunohistochemistry with solid
-  architecture and absent calcifications identified over half of ER+/HER2−
-  DCIS mastectomy patients as low-risk, in whom sentinel lymph node biopsy
-  may be safely omitted—pending multicenter validation.
+  Histology plus ER/HER2 status identifies a low-risk DCIS subgroup that may
+  warrant evaluation for axillary de-escalation, but omitting sentinel node
+  biopsy remains investigational pending multicentre validation.
 
 references:
   - "Riggi JAM, Galant C, Bouzin C, et al. An Immunohistochemistry-based Decision Flowchart to De-escalate Axillary Surgery for Biopsy-Diagnosed Pure Ductal Carcinoma In Situ (DCIS) of the Breast. Mod Pathol. 2026;39(9):101040. doi:10.1016/j.modpat.2026.101040"
